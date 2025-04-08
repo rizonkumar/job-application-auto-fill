@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Application Autofill - Options</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Manage Your Profiles</h1>
+
+      <div class="profile-management">
+        <div class="profile-list">
+          <h2>Your Profiles</h2>
+          <ul id="profiles-list"></ul>
+          <button id="add-profile" class="primary-button">
+            Create New Profile
+          </button>
+        </div>
+
+        <div class="profile-editor">
+          <h2 id="editor-title">Edit Profile</h2>
+
+          <form id="profile-form">
+            <div class="form-group">
+              <label for="profile-name">Profile Name</label>
+              <input type="text" id="profile-name" required />
+            </div>
+
+            <h3>Personal Information</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" />
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="country-code">Phone Country Code</label>
+                <select id="country-code">
+                  <option value="+91">India (+91)</option>
+                  <option value="+1">United States (+1)</option>
+                  <option value="+44">United Kingdom (+44)</option>
+                  <option value="+61">Australia (+61)</option>
+                  <option value="+49">Germany (+49)</option>
+                  <option value="+33">France (+33)</option>
+                  <option value="+81">Japan (+81)</option>
+                  <option value="+86">China (+86)</option>
+                  <option value="+65">Singapore (+65)</option>
+                  <option value="+971">UAE (+971)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address</label>
+              <textarea id="address"></textarea>
+            </div>
+
+            <h3>Job Preferences</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="overall-experience">Overall Experience</label>
+                <input
+                  type="text"
+                  id="overall-experience"
+                  placeholder="e.g., 3"
+                />
+              </div>
+              <div class="form-group">
+                <label for="current-ctc">Current CTC</label>
+                <input type="text" id="current-ctc" placeholder="e.g., 5" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expected-ctc">Expected CTC</label>
+                <input type="text" id="expected-ctc" placeholder="e.g., 12" />
+              </div>
+              <div class="form-group">
+                <label for="notice-period">Notice Period</label>
+                <input type="text" id="notice-period" placeholder="e.g., 30" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="location-preference">Location Preferences</label>
+              <textarea
+                id="location-preference"
+                placeholder="e.g., Bangalore"
+              ></textarea>
+            </div>
+
+            <h3>Work History</h3>
+            <div id="work-history-container">
+              <!-- Work history entries will be added here -->
+            </div>
+            <button type="button" id="add-work" class="secondary-button">
+              Add Work Experience
+            </button>
+
+            <h3>Education</h3>
+            <div id="education-container">
+              <!-- Education entries will be added here -->
+            </div>
+            <button type="button" id="add-education" class="secondary-button">
+              Add Education
+            </button>
+
+            <div class="form-actions">
+              <button type="submit" class="primary-button">Save Profile</button>
+              <button type="button" id="cancel-edit" class="text-button">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
