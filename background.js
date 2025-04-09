@@ -24,7 +24,13 @@ chrome.runtime.onInstalled.addListener(() => {
         },
         workHistory: [],
         education: [],
-        skills: [],
+        skills: [
+          { name: "JavaScript", years: "3" },
+          { name: "React", years: "2" },
+          { name: "Angular", years: "1" },
+          { name: "Node.js", years: "2" },
+          { name: "HTML/CSS", years: "3" },
+        ],
         references: [],
         documents: [],
       };
