@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("add-education")
     .addEventListener("click", addEducationField);
+  document.getElementById("add-skill").addEventListener("click", addSkillField);
 });
 
 function loadProfiles() {
@@ -120,6 +121,7 @@ function editProfile(profileId) {
   // Clear existing work history and education fields
   document.getElementById("work-history-container").innerHTML = "";
   document.getElementById("education-container").innerHTML = "";
+  document.getElementById("skills-container").innerHTML = "";
 
   // Add work history entries
   if (profile.workHistory && profile.workHistory.length) {
@@ -133,6 +135,13 @@ function editProfile(profileId) {
     profile.education.forEach((edu) => addEducationField(edu));
   } else {
     addEducationField();
+  }
+
+  // Add skill entries
+  if (profile.skills && profile.skills.length) {
+    profile.skills.forEach((skill) => addSkillField(skill));
+  } else {
+    addSkillField();
   }
 
   // Show the editor
@@ -190,6 +199,16 @@ function saveProfile(event) {
     })
     .filter((edu) => edu.school || edu.degree); // Only keep entries with at least school or degree
 
+  const skillEntries = document.querySelectorAll(".skill-entry");
+  const skills = Array.from(skillEntries)
+    .map((entry) => {
+      return {
+        name: entry.querySelector(".skill-name").value,
+        years: entry.querySelector(".skill-years").value,
+      };
+    })
+    .filter((skill) => skill.name); // Only keep entries with a name
+
   // Create profile object
   const profile = {
     id: currentEditingId || "profile_" + Date.now(),
@@ -197,7 +216,7 @@ function saveProfile(event) {
     personalInfo,
     workHistory,
     education,
-    skills: [],
+    skills,
     references: [],
     documents: [],
   };
@@ -353,6 +372,42 @@ function addEducationField(eduData = null) {
         <label>End Date</label>
         <input type="text" class="education-end-date" placeholder="MM/YYYY or Present" value="${
           eduData?.endDate || ""
+        }">
+      </div>
+    </div>
+    <div class="form-actions entry-actions">
+      <button type="button" class="text-button remove-entry">Remove</button>
+    </div>
+  `;
+
+  container.appendChild(entryDiv);
+
+  // Add event listener for remove button
+  entryDiv
+    .querySelector(".remove-entry")
+    .addEventListener("click", function () {
+      container.removeChild(entryDiv);
+    });
+}
+
+function addSkillField(skillData = null) {
+  const container = document.getElementById("skills-container");
+  const entryId = "skill_" + Date.now();
+
+  const entryDiv = document.createElement("div");
+  entryDiv.className = "form-entry skill-entry";
+  entryDiv.id = entryId;
+
+  entryDiv.innerHTML = `
+    <div class="form-row">
+      <div class="form-group">
+        <label>Skill Name</label>
+        <input type="text" class="skill-name" value="${skillData?.name || ""}">
+      </div>
+      <div class="form-group">
+        <label>Years of Experience</label>
+        <input type="text" class="skill-years" value="${
+          skillData?.years || ""
         }">
       </div>
     </div>
